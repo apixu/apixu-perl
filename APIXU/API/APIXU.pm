@@ -55,22 +55,23 @@ sub search {
 sub get_api_response {
     my ($url) = @_;
     my $ua = LWP::UserAgent->new();
-    my $response = $ua->get( $url );
+    my $response = $ua->get($url);
+
+    my $json_resp = $response->decoded_content;
+    my $json_decoded = $json->decode($json_resp);
 
     if ($response->is_success) {
-        my $json_resp = $response->decoded_content;
-        my $json_decoded = $json->decode( $json_resp );
         return $json_decoded;
     }
-    else {
-        my $resp_message = $response->message;
-        my %json_resp = (
-            'error' => {
-                'message'  => $resp_message,
-            }
-        );
-        return \%json_resp;
-    }
+
+    my %json_resp = (
+        'error' => {
+            'code' => $json_decoded->{error}->{code},
+            'message' => $json_decoded->{error}->{message},
+        }
+    );
+    return \%json_resp;
+
 }
 
 1;
