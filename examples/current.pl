@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 
 use lib 'APIXU/API';
 use APIXU;
