@@ -1,16 +1,13 @@
 package APIXU::API::APIXU;
 use strict;
+use warnings;
 
-use LWP::UserAgent; 
-use HTTP::Request::Common qw{ POST };
+use LWP::UserAgent;
 use JSON;
 
-
 my $json = JSON->new->allow_nonref;
-my $api_url = 'http://api.apixu.com/v1';
-
-my $current_weather   = '/current.json';
-my $forecast_weather  = '/forecast.json';
+my $api_url = 'https://api.apixu.com/v1/';
+my $format = 'json';
 
 sub new
 {
@@ -22,24 +19,22 @@ sub new
     return $self;
 }
 
-
-sub get_current {
+sub current {
     my ($self, $location) = @_;
     my $api_key = $self->{'_api_key'};
-    my $url = $api_url.$current_weather."?key=$api_key&q=$location";
+    my $url = $api_url."current.$format?key=$api_key&q=$location";
     return &get_api_response($url);
 }
 
-sub get_forecast {
+sub forecast {
     my ($self, $location, $days) = @_;
     my $api_key = $self->{'_api_key'};
-    my $url = $api_url.$forecast_weather."?key=$api_key&q=$location&days=$days";
+    my $url = $api_url."forecast.$format?key=$api_key&q=$location&days=$days";
     return &get_api_response($url);
 }
 
 sub get_api_response {
     my ($url) = @_;
-    print "URL=$url<hr>";
     my $ua       = LWP::UserAgent->new();
     my $response = $ua->get( $url );
 
