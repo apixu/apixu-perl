@@ -6,9 +6,15 @@ use LWP::UserAgent;
 use JSON;
 
 my $json = JSON->new->allow_nonref;
+
 my $api_url = 'https://api.apixu.com/v1/';
 my $format = 'json';
 my $weather_conditions_url = 'https://www.apixu.com/doc/Apixu_weather_conditions';
+
+use constant {
+    HTTP_TIMEOUT => 20,
+    HTTP_STATUS_INTERNAL_SERVER_ERROR => 500,
+};
 
 sub new {
     my $class = shift;
@@ -52,10 +58,23 @@ sub search {
     return &get_api_response($url);
 }
 
+
 sub get_api_response {
     my ($url) = @_;
     my $ua = LWP::UserAgent->new();
+    $ua->timeout(HTTP_TIMEOUT);
+
     my $response = $ua->get($url);
+
+    if ($response->code == HTTP_STATUS_INTERNAL_SERVER_ERROR) {
+        my %json_resp = (
+            'error' => {
+                'code' => 0,
+                'message' => $@,
+            }
+        );
+        return \%json_resp;
+    }
 
     my $json_resp = $response->decoded_content;
     my $json_decoded = $json->decode($json_resp);
@@ -71,7 +90,6 @@ sub get_api_response {
         }
     );
     return \%json_resp;
-
 }
 
 1;
