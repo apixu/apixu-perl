@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use lib 'APIXU/API';
+use lib '.';
 use APIXU;
 
 my $api_key = $ENV{'APIXUKEY'};
