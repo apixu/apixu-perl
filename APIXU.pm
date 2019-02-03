@@ -7,10 +7,12 @@ use JSON;
 
 my $json = JSON->new->allow_nonref;
 
+our $VERSION = 0.2;
+
 use constant {
-    API_URL => 'https://api.apixu.com/v1/',
+    API_URL => 'http://api.apixu.com/v1/',
     FORMAT => 'json',
-    WEATHER_CONDITIONS_URL => 'https://www.apixu.com/doc/Apixu_weather_conditions',
+    WEATHER_CONDITIONS_URL => 'http://www.apixu.com/doc/Apixu_weather_conditions',
     HTTP_TIMEOUT => 20,
     HTTP_STATUS_INTERNAL_SERVER_ERROR => 500,
 };

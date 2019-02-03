@@ -1,4 +1,4 @@
 FROM perl:slim
 
 RUN apt update && \
-    apt install -y libjson-perl libwww-perl
+    apt install -y curl gcc libjson-perl libwww-perl
