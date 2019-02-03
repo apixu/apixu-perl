@@ -59,7 +59,6 @@ sub search {
     return &get_api_response($url);
 }
 
-
 sub get_api_response {
     my ($url) = @_;
     my $ua = LWP::UserAgent->new();
