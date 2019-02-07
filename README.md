@@ -30,7 +30,7 @@ cpanm https://github.com/apixu/apixu-perl/archive/master.tar.gz
 
 #### Manually
 ```
-git clone https://github.com/apixy/apixu-perl --branch vX.X.X --single-branch # or download repository
+git clone https://github.com/apixu/apixu-perl --branch vX.X.X --single-branch # or download repository
 cd apixu-perl
 git checkout vX.X.X
 ```
