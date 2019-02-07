@@ -12,7 +12,8 @@ my $query = 'Paris';
 my $since = "2019-01-31";
 my $forecast = $apixu->history($query, $since);
 
-if (exists $forecast->{'error'}) {
+# Very basic error handling
+if (ref $forecast eq 'HASH' && exists $forecast->{'error'}) {
     print $forecast->{'error'}->{'code'};
     print "\n";
     print $forecast->{'error'}->{'message'};

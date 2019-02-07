@@ -5,6 +5,8 @@ Perl module for [Apixu Weather API](https://www.apixu.com/api.aspx)
 ## Requirements
 * [Perl](https://www.perl.org/get.html)
 * [cpanm](https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm)
+* curl
+* make
 * Modules
     * [LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent)
     * [JSON](https://metacpan.org/pod/JSON)
@@ -28,7 +30,9 @@ cpanm https://github.com/apixu/apixu-perl/archive/master.tar.gz
 
 #### Manually
 ```
-git clone --branch vX.X.X https://github.com/apixy/apixu-perl
+git clone https://github.com/apixy/apixu-perl --branch vX.X.X --single-branch # or download repository
+cd apixu-perl
+git checkout vX.X.X
 ```
 
 ## Usage and integration with frameworks
