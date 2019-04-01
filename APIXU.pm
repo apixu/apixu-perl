@@ -39,16 +39,26 @@ sub current {
 }
 
 sub forecast {
-    my ($self, $query, $days) = @_;
+    my ($self, $query, $days, $hour) = @_;
     my $api_key = $self->{'_api_key'};
     my $url = API_URL."forecast.".FORMAT."?key=$api_key&q=$query&days=$days";
+
+    if (defined $hour) {
+        $url .= "&hour=$hour";
+    }
+
     return &get_api_response($url);
 }
 
 sub history {
-    my ($self, $query, $since) = @_;
+    my ($self, $query, $since, $until) = @_;
     my $api_key = $self->{'_api_key'};
     my $url = API_URL."history.".FORMAT."?key=$api_key&q=$query&dt=$since";
+
+    if (defined $until) {
+        $url .= "&end_dt=$until";
+    }
+
     return &get_api_response($url);
 }
 
