@@ -51,6 +51,11 @@ https://www.apixu.com/doc/
 
 You can use with Docker. See [Makefile-dev](Makefile-dev).
 
+First build:
+```
+make -f Makefile-dev build APIXUKEY=yourapikey
+```
+
 Enter environment:
 ```
 make -f Makefile-dev env APIXUKEY=yourapikey
