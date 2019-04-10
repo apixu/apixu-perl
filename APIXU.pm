@@ -7,7 +7,7 @@ use JSON;
 
 my $json = JSON->new->allow_nonref;
 
-our $VERSION = 0.2;
+our $VERSION = 0.3;
 
 use constant {
     API_URL => 'http://api.apixu.com/v1/',
